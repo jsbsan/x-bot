@@ -1,0 +1,11 @@
+Mouse: 52,12
+Esperar (Seg): 2
+click(1)
+Mouse: 115,269
+Esperar (Seg): 2
+click(1)
+Mouse: 353,302
+Esperar (Seg): 2
+click(1)
+Mouse: 599,311
+Texto: hola mundo

@@ -1,0 +1,36 @@
+' Gambas module file
+
+' Gambas class file
+
+Public Function ejecutar_comando(comando As String) As String
+
+  Dim resultado As String
+  'PRINT "Ejecutando: " & comando
+  Shell comando To resultado
+  If Len(resultado) = 0 Or resultado = "" Then
+    resultado = "Nulo"
+  End If
+  'PRINT resultado
+  Return resultado
+
+End
+
+Public Function xmouse(cadena As String) As String
+
+  Dim x As String[]
+
+  x = Split(cadena, " ")
+  x[0] = Mid$(x[0], 3)
+  Return x[0]
+
+End
+
+Public Function ymouse(cadena As String) As String
+
+  Dim x As String[]
+
+  x = Split(cadena, " ")
+  x[1] = Mid$(x[1], 3)
+  Return x[1]
+
+End
