@@ -5,6 +5,8 @@ Public repitevalor As Integer = 40
 Public destino As String
 Public modificado As Boolean
 
+Public IDVENTANA As String
+
 Public Sub _new()
 
 End
@@ -225,6 +227,10 @@ Public Sub cargaDeDatos(fichero As String)
         pic = "images/keyboard16x16.png"
       Case "Sali"
         pic = "images/terminal.png"
+      Case "Ir V"
+        pic = "images/irVentana16x16.png"
+      Case "Dete"
+        pic = "images/conseguirIdVentana16x16.png"
     End Select
     ' Verificamos que el elemento del array no este vacido o nulo
     If Trim$(cmd) <> "" And Len(cmd) > 0 Then
@@ -334,14 +340,21 @@ Public Sub Timer2_Timer()
       Case "Tecl"
         funciones.ejecutar_comando("xdotool key " & Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 6))
       Case "Sali"
-        funciones.ejecutar_comando(Replace(ListViewListaOrdenes.item.Text, "Salida Comando: ", "") & "|| xdotool key") ''uso tuberia para mandar lo que genera el comando
+        funciones.ejecutar_comando(Replace(ListViewListaOrdenes.item.Text, "Salida Comando: ", "") & "| xdotool type") ''uso tuberia para mandar lo que genera el comando
 
       Case "Espe"
         Sleep Val(Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 14))
 
+      Case "Dete"
+        Shell "xdotool search --name \"" & Replace(ListViewListaOrdenes.item.Text, "Detectar Id Ventana: ", "") & "\" | head -1" To IDVENTANA
+        Print IDVENTANA
+      Case "Ir V"
+        Shell "xdotool windowactivate " & IDVENTANA
+
       Case "Salt"
         ListViewListaOrdenes.MoveTo(Val(Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 16)))
         Filtro = True
+
     End Select
 
     If Filtro = False Then
@@ -440,7 +453,7 @@ Public Sub guardaEditor()
   Wait 0.1
   modificado = False
   cargaDeDatos(destino)
-  Message.Info("Guardado..." & gb.CrLf & destino)
+  ' Message.Info("Guardado..." & gb.CrLf & destino)
 Catch
   Message.Error("ohhhh!!!! error!!!")
 
@@ -539,5 +552,23 @@ Public Sub ToolButtonEnviarSalidaComando_Click()
     ButtonIzquierdaRaton.SetFocus()
     modificado = True
   End If
+
+End
+
+Public Sub ButtonDetectarVentana_Click()
+
+  ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "Detectar Id Ventana: " & textnombreventana.text, Picture.Load("images/conseguirIdVentana16x16.png"))
+  TextAreaEditor.text &= "Detectar Id Ventana: " & textnombreventana.text & "\n"
+  ButtonIzquierdaRaton.SetFocus()
+  modificado = True
+
+End
+
+Public Sub ButtonIrVentana_Click()
+
+  ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "Ir Ventana detectada", Picture.Load("images/irVentana16x16.png"))
+  TextAreaEditor.text &= "Ir Ventana" & "\n"
+  ButtonIzquierdaRaton.SetFocus()
+  modificado = True
 
 End

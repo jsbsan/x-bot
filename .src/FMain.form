@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  Move(0,0,665,483)
+  Move(0,0,665,511)
   #Scaled = False
   Ignore = True
   Text = ("X-Bot")
@@ -51,17 +51,17 @@
     Text = ("Autores: Jodacame y Jsbsan")
   }
   { Frame1 Frame
-    Move(0,35,378,420)
+    Move(-7,28,378,455)
     Font = Font["-2"]
     Text = ("Configuración  ")
     { Label1 Label
-      Move(280,21,77,28)
+      Move(280,28,77,28)
       Font = Font["-2"]
       Alignment = Align.Right
       Text = ("Ratón")
     }
     { Separator1 Separator
-      Move(77,42,280,7)
+      Move(77,49,280,7)
     }
     { Label2 Label
       Move(84,56,14,21)
@@ -70,10 +70,6 @@
     { Label3 Label
       Move(84,84,21,21)
       Text = ("y:")
-    }
-    { Timer1 #Timer
-      #Move(0,378)
-      Delay = 150
     }
     { ButtonIzquierdaRaton Button
       Move(266,63,35,28)
@@ -105,7 +101,7 @@
     }
     { ToolButtonEnviarTexto ToolButton
       Move(336,112,28,21)
-      Picture = Picture["images/001_01.png"]
+      Picture = Picture["images/add1-.png"]
       Border = True
     }
     { Label8 Label
@@ -120,7 +116,7 @@
     }
     { ToolButtonComando ToolButton
       Move(336,168,28,21)
-      Picture = Picture["images/001_01.png"]
+      Picture = Picture["images/add1-.png"]
       Border = True
     }
     { ToolButtonPosCursor ToolButton
@@ -143,7 +139,7 @@
     }
     { ToolButtonTiempoDeEspera ToolButton
       Move(336,259,28,21)
-      Picture = Picture["images/001_01.png"]
+      Picture = Picture["images/add1-.png"]
       Border = True
     }
     { TextArea1 TextArea
@@ -165,17 +161,17 @@
       Text = ("Saltar a la Linea:")
     }
     { ToolButtonSaltarAlaLinea ToolButton
-      Move(336,308,35,28)
-      Picture = Picture["images/001_01.png"]
+      Move(336,308,28,21)
+      Picture = Picture["images/add1-.png"]
       Border = True
     }
     { PictureBox1 PictureBox
-      Move(7,105,70,238)
+      Move(7,105,70,287)
       Picture = Picture["images/logo.png"]
       Stretch = True
     }
     { ButtonIniciar Button
-      Move(14,343,98,42)
+      Move(7,392,98,28)
       Font = Font["DejaVu Sans,Bold,+1"]
       Foreground = &H000000&
       ToolTip = ("Iniciar Bot")
@@ -183,7 +179,7 @@
       Picture = Picture["images/start2.png"]
     }
     { ButtonCancelar Button
-      Move(252,343,119,42)
+      Move(238,392,119,28)
       Font = Font["DejaVu Sans,Bold,+1"]
       Foreground = &HC00000&
       ToolTip = ("Detener Bot")
@@ -191,7 +187,7 @@
       Picture = Picture["images/stop (1).png"]
     }
     { ToolButtonRepite ToolButton
-      Move(140,343,84,42)
+      Move(133,392,84,28)
       Font = Font["DejaVu Sans,Bold,+1"]
       ToolTip = ("Repetir el numero de veces indicado")
       Text = ("Repite")
@@ -199,12 +195,12 @@
       Border = True
     }
     { Label12 Label
-      Move(63,392,91,21)
+      Move(49,427,91,21)
       Alignment = Align.Right
       Text = ("Repite:")
     }
     { ValueBoxRepite ValueBox
-      Move(168,392,56,21)
+      Move(154,427,56,21)
       Text = ("0")
     }
     { PictureBox2 PictureBox
@@ -218,7 +214,7 @@
       Picture = Picture["images/eye.png"]
     }
     { TextLabel1 TextLabel
-      Move(238,385,140,35)
+      Move(217,420,140,35)
       Text = ("(valor inicial 10 repeticiones)")
       Alignment = Align.Center
     }
@@ -276,30 +272,53 @@
     }
     { ToolButtontecla ToolButton
       Move(336,203,28,21)
-      Picture = Picture["images/001_01.png"]
+      Picture = Picture["images/add1-.png"]
       Border = True
     }
     { Label16 Label
       Move(84,133,175,21)
-      Text = ("Enviar texto desde  este comando::")
+      Enabled = False
+      Text = ("Enviar salida de  este comando::")
     }
-    { textoSalidaComando TextBox
+    { !textoSalidaComando TextBox
       Move(252,133,84,21)
+      #Public = True
       Font = Font["-2"]
       ToolTip = ("Texto a enviar")
     }
-    { ToolButtonEnviarSalidaComando ToolButton
+    { !ToolButtonEnviarSalidaComando ToolButton
       Move(336,133,28,21)
-      Picture = Picture["images/001_01.png"]
+      #Public = True
+      Picture = Picture["images/add1-.png"]
       Border = True
+    }
+    { Timer1 #Timer
+      #Move(329,399)
+      Delay = 150
+    }
+    { Separator6 Separator
+      Move(84,343,294,7)
+    }
+    { ButtonDetectarVentana Button
+      Move(154,350,119,28)
+      Text = ("Detectar Ventana")
+      Picture = Picture["images/add1-.png"]
+    }
+    { ButtonIrVentana Button
+      Move(273,350,98,28)
+      Text = ("Ir ventana")
+      Picture = Picture["images/add1-.png"]
+    }
+    { textnombreventana TextBox
+      Move(84,350,70,28)
     }
   }
   { Timer2 #Timer
-    #Move(56,413)
+    #Move(7,364)
     Delay = 500
   }
   { TabStrip1 TabStrip
-    Move(385,28,273,427)
+    Move(385,28,273,455)
     Count = 2
     Index = 0
     Text = ("Visor Ordenes")
@@ -310,7 +329,7 @@
       Text = ("Linea: 0")
     }
     { ListViewListaOrdenes ListView
-      Move(7,35,259,350)
+      Move(7,28,259,385)
       ToolTip = ("Script: Zona comandos")
       Editable = True
     }
@@ -332,7 +351,7 @@
   }
   { TextLabelVersion TextLabel
     Move(0,-7,189,28)
-    Text = ("TextLabel1")
+    Text = ("version x.xx")
     Alignment = Align.Center
   }
   { ToggleButtonDetener ToolButton
