@@ -223,6 +223,8 @@ Public Sub cargaDeDatos(fichero As String)
         pic = "images/saltar.png"
       Case "Tecl" 'pulsación de tecla
         pic = "images/keyboard16x16.png"
+      Case "Sali"
+        pic = "images/terminal.png"
     End Select
     ' Verificamos que el elemento del array no este vacido o nulo
     If Trim$(cmd) <> "" And Len(cmd) > 0 Then
@@ -329,10 +331,14 @@ Public Sub Timer2_Timer()
         End If
       Case "Text"
         funciones.ejecutar_comando("xdotool type '" & Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 6) & "'")
-      Case "Tecla"
+      Case "Tecl"
         funciones.ejecutar_comando("xdotool key " & Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 6))
+      Case "Sali"
+        funciones.ejecutar_comando(Replace(ListViewListaOrdenes.item.Text, "Salida Comando: ", "") & "|| xdotool key") ''uso tuberia para mandar lo que genera el comando
+
       Case "Espe"
         Sleep Val(Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 14))
+
       Case "Salt"
         ListViewListaOrdenes.MoveTo(Val(Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 16)))
         Filtro = True
@@ -434,7 +440,7 @@ Public Sub guardaEditor()
   Wait 0.1
   modificado = False
   cargaDeDatos(destino)
-
+  Message.Info("Guardado..." & gb.CrLf & destino)
 Catch
   Message.Error("ohhhh!!!! error!!!")
 
@@ -515,6 +521,21 @@ Public Sub ToolButtontecla_Click()
   If Len(comandotecla.Text) > 0 And Trim$(comandotecla.Text) <> "" Then
     ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "Comando: " & comandotecla.Text, Picture.Load("images/keyboard16x16.png"))
     TextAreaEditor.text &= "Tecla: " & comandotecla.Text & "\n"
+    ButtonIzquierdaRaton.SetFocus()
+    modificado = True
+  End If
+
+End
+
+Public Sub Label16_MouseDown()
+
+End
+
+Public Sub ToolButtonEnviarSalidaComando_Click()
+
+  If Len(textoSalidaComando.Text) > 0 And Trim$(textoSalidaComando.Text) <> "" Then
+    ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "Salida Comando: " & textoSalidaComando.Text, Picture.Load("images/terminal.png"))
+    TextAreaEditor.text &= "Salida Comando: " & textoSalidaComando.Text & "\n"
     ButtonIzquierdaRaton.SetFocus()
     modificado = True
   End If

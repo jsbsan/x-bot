@@ -95,31 +95,31 @@
       Move(77,105,280,7)
     }
     { texto TextBox
-      Move(182,119,154,21)
+      Move(182,112,154,21)
       Font = Font["-2"]
       ToolTip = ("Texto a enviar")
     }
     { Label7 Label
-      Move(84,119,91,21)
+      Move(84,112,91,21)
       Text = ("Enviar texto:")
     }
     { ToolButtonEnviarTexto ToolButton
-      Move(336,119,35,28)
+      Move(336,112,28,21)
       Picture = Picture["images/001_01.png"]
       Border = True
     }
     { Label8 Label
-      Move(84,154,91,21)
+      Move(84,168,91,21)
       Text = ("Comando:")
     }
     { comand TextBox
-      Move(182,154,154,21)
+      Move(182,168,154,21)
       Font = Font["-2"]
       ToolTip = ("Ejecutar un comando en la terminal")
       MaxLength = 50
     }
     { ToolButtonComando ToolButton
-      Move(336,154,35,28)
+      Move(336,168,28,21)
       Picture = Picture["images/001_01.png"]
       Border = True
     }
@@ -129,20 +129,20 @@
       Border = True
     }
     { Label4 Label
-      Move(252,210,112,28)
+      Move(252,231,112,28)
       Font = Font["-2"]
       Alignment = Align.Right
       Text = ("Tiempo de Espera")
     }
     { Separator2 Separator
-      Move(77,231,287,7)
+      Move(77,252,287,7)
     }
     { Label5 Label
-      Move(84,252,175,21)
+      Move(84,259,175,21)
       Text = ("Tiempo de espera (sleep):")
     }
     { ToolButtonTiempoDeEspera ToolButton
-      Move(336,245,35,28)
+      Move(336,259,28,21)
       Picture = Picture["images/001_01.png"]
       Border = True
     }
@@ -237,7 +237,7 @@
       Text = ("( F4 )")
     }
     { segundos ValueBox
-      Move(259,252,77,21)
+      Move(259,259,77,21)
       ToolTip = ("Pausa entre cada linea en segundos")
       Text = ("1")
     }
@@ -265,17 +265,31 @@
       Picture = Picture["tecla-f-icono-5052-32.png"]
     }
     { Label15 Label
-      Move(84,189,98,21)
+      Move(84,203,98,21)
       Text = ("Combinacion Tecla:")
     }
     { comandoTecla TextBox
-      Move(182,189,154,21)
+      Move(182,203,154,21)
       Font = Font["-2"]
       ToolTip = ("Ejecutar un comando en la terminal")
       MaxLength = 50
     }
     { ToolButtontecla ToolButton
-      Move(336,189,35,28)
+      Move(336,203,28,21)
+      Picture = Picture["images/001_01.png"]
+      Border = True
+    }
+    { Label16 Label
+      Move(84,133,175,21)
+      Text = ("Enviar texto desde  este comando::")
+    }
+    { textoSalidaComando TextBox
+      Move(252,133,84,21)
+      Font = Font["-2"]
+      ToolTip = ("Texto a enviar")
+    }
+    { ToolButtonEnviarSalidaComando ToolButton
+      Move(336,133,28,21)
       Picture = Picture["images/001_01.png"]
       Border = True
     }
