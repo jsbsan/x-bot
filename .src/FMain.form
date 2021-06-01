@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  Move(0,0,665,469)
+  Move(0,0,665,483)
   #Scaled = False
   Ignore = True
   Text = ("X-Bot")
@@ -51,14 +51,14 @@
     Text = ("Autores: Jodacame y Jsbsan")
   }
   { Frame1 Frame
-    Move(0,21,378,420)
+    Move(0,35,378,420)
     Font = Font["-2"]
     Text = ("Configuración  ")
     { Label1 Label
       Move(280,21,77,28)
       Font = Font["-2"]
-      Text = ("Ratón")
       Alignment = Align.Right
+      Text = ("Ratón")
     }
     { Separator1 Separator
       Move(77,42,280,7)
@@ -72,7 +72,7 @@
       Text = ("y:")
     }
     { Timer1 #Timer
-      #Move(77,168)
+      #Move(0,378)
       Delay = 150
     }
     { ButtonIzquierdaRaton Button
@@ -88,8 +88,8 @@
     { Label6 Label
       Move(266,84,91,28)
       Font = Font["-2"]
-      Text = ("Teclado")
       Alignment = Align.Right
+      Text = ("Teclado")
     }
     { Separator4 Separator
       Move(77,105,280,7)
@@ -119,7 +119,7 @@
       MaxLength = 50
     }
     { ToolButtonComando ToolButton
-      Move(336,152,35,28)
+      Move(336,154,35,28)
       Picture = Picture["images/001_01.png"]
       Border = True
     }
@@ -129,20 +129,20 @@
       Border = True
     }
     { Label4 Label
-      Move(245,189,112,28)
+      Move(252,210,112,28)
       Font = Font["-2"]
-      Text = ("Tiempo de Espera")
       Alignment = Align.Right
+      Text = ("Tiempo de Espera")
     }
     { Separator2 Separator
-      Move(77,210,287,7)
+      Move(77,231,287,7)
     }
     { Label5 Label
-      Move(84,224,175,21)
+      Move(84,252,175,21)
       Text = ("Tiempo de espera (sleep):")
     }
     { ToolButtonTiempoDeEspera ToolButton
-      Move(336,224,35,28)
+      Move(336,245,35,28)
       Picture = Picture["images/001_01.png"]
       Border = True
     }
@@ -152,20 +152,20 @@
       ReadOnly = True
     }
     { Label9 Label
-      Move(238,259,119,28)
+      Move(238,280,119,28)
       Font = Font["-2"]
-      Text = ("Acciones")
       Alignment = Align.Right
+      Text = ("Acciones")
     }
     { Separator3 Separator
-      Move(77,280,287,7)
+      Move(77,301,287,7)
     }
     { Label10 Label
-      Move(84,294,175,21)
+      Move(84,308,175,21)
       Text = ("Saltar a la Linea:")
     }
     { ToolButtonSaltarAlaLinea ToolButton
-      Move(336,294,35,28)
+      Move(336,308,35,28)
       Picture = Picture["images/001_01.png"]
       Border = True
     }
@@ -200,8 +200,8 @@
     }
     { Label12 Label
       Move(63,392,91,21)
-      Text = ("Repite:")
       Alignment = Align.Right
+      Text = ("Repite:")
     }
     { ValueBoxRepite ValueBox
       Move(168,392,56,21)
@@ -218,26 +218,26 @@
       Picture = Picture["images/eye.png"]
     }
     { TextLabel1 TextLabel
-      Move(231,385,140,35)
-      Text = ("(valor inicial 100 repeticiones)")
+      Move(238,385,140,35)
+      Text = ("(valor inicial 10 repeticiones)")
       Alignment = Align.Center
     }
     { Label13 Label
       Move(224,91,49,21)
       Font = Font["-1"]
       AutoResize = True
-      Text = ("(Shift+m)")
       Alignment = Align.Center
+      Text = ("(Shift+m)")
     }
     { Label14 Label
       Move(168,70,49,21)
       Font = Font["-1"]
       AutoResize = True
-      Text = ("( F4 )")
       Alignment = Align.Center
+      Text = ("( F4 )")
     }
     { segundos ValueBox
-      Move(259,224,77,21)
+      Move(259,252,77,21)
       ToolTip = ("Pausa entre cada linea en segundos")
       Text = ("1")
     }
@@ -254,7 +254,7 @@
       Text = ("0")
     }
     { lineax ValueBox
-      Move(259,294,77,21)
+      Move(259,308,77,21)
       ToolTip = ("Saltar linea (0: Para iniciar nuevamente)")
       Text = ("0")
     }
@@ -264,13 +264,28 @@
       Text = ("TECLA F4  y captura Mouse")
       Picture = Picture["tecla-f-icono-5052-32.png"]
     }
+    { Label15 Label
+      Move(84,189,98,21)
+      Text = ("Combinacion Tecla:")
+    }
+    { comandoTecla TextBox
+      Move(182,189,154,21)
+      Font = Font["-2"]
+      ToolTip = ("Ejecutar un comando en la terminal")
+      MaxLength = 50
+    }
+    { ToolButtontecla ToolButton
+      Move(336,189,35,28)
+      Picture = Picture["images/001_01.png"]
+      Border = True
+    }
   }
   { Timer2 #Timer
-    #Move(126,189)
+    #Move(56,413)
     Delay = 500
   }
   { TabStrip1 TabStrip
-    Move(385,28,273,413)
+    Move(385,28,273,427)
     Count = 2
     Index = 0
     Text = ("Visor Ordenes")

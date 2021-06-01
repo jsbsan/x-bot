@@ -221,6 +221,8 @@ Public Sub cargaDeDatos(fichero As String)
         pic = "images/wait.png"
       Case "Salt" ' Salto de linea
         pic = "images/saltar.png"
+      Case "Tecl" 'pulsación de tecla
+        pic = "images/keyboard16x16.png"
     End Select
     ' Verificamos que el elemento del array no este vacido o nulo
     If Trim$(cmd) <> "" And Len(cmd) > 0 Then
@@ -278,9 +280,25 @@ End
 Public Sub ButtonIniciar_Click()
   ' Boton Iniciar
 
+  reducirformulario()
   ListViewListaOrdenes.MoveFirst
   Timer2.Enabled = True
   repitevalor = 0
+  Me.Title = "Ejecutando: " & File.BaseName(destino)
+
+End
+
+Public Sub reducirformulario()
+
+  Me.W = 357
+  Me.H = 56
+
+End
+
+Public Sub aumentarFormulario()
+
+  Me.W = 665
+  Me.H = 483
 
 End
 
@@ -311,6 +329,8 @@ Public Sub Timer2_Timer()
         End If
       Case "Text"
         funciones.ejecutar_comando("xdotool type '" & Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 6) & "'")
+      Case "Tecla"
+        funciones.ejecutar_comando("xdotool key " & Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 6))
       Case "Espe"
         Sleep Val(Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 14))
       Case "Salt"
@@ -327,8 +347,11 @@ Public Sub Timer2_Timer()
       repitevalor -= 1
       ListViewListaOrdenes.MoveFirst()
       Timer2.Enabled = True
+      Me.Title = "Ejecutandose: " & File.BaseName(destino) & " (" & repitevalor & ")"
     Else
       Timer2.Enabled = False
+      Me.Title = "X-bot"
+      aumentarFormulario()
     Endif
   End If
 
@@ -357,8 +380,9 @@ End
 
 Public Sub ToolButtonRepite_Click()
 
+  reducirformulario()
   ' Boton Iniciar
-  If ValueBoxRepite.Value = 0 Then ValueBoxRepite.Value = 100
+  If ValueBoxRepite.Value = 0 Then ValueBoxRepite.Value = 10
   repitevalor = ValueBoxRepite.Value
   ListViewListaOrdenes.MoveFirst
   Timer2.Enabled = True
@@ -482,5 +506,17 @@ Public Sub Form_Close()
   'finalizar
   Timer1.Stop
   Timer2.Stop
+
+End
+
+Public Sub ToolButtontecla_Click()
+  ' Agregamos a la lista y verificamos que no este vacio el campo
+
+  If Len(comandotecla.Text) > 0 And Trim$(comandotecla.Text) <> "" Then
+    ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "Comando: " & comandotecla.Text, Picture.Load("images/keyboard16x16.png"))
+    TextAreaEditor.text &= "Tecla: " & comandotecla.Text & "\n"
+    ButtonIzquierdaRaton.SetFocus()
+    modificado = True
+  End If
 
 End
