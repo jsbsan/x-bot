@@ -231,6 +231,8 @@ Public Sub cargaDeDatos(fichero As String)
         pic = "images/irVentana16x16.png"
       Case "Dete"
         pic = "images/conseguirIdVentana16x16.png"
+      Case "Pala"
+        pic = "images/aleatoria16x16.jpg"
     End Select
     ' Verificamos que el elemento del array no este vacido o nulo
     If Trim$(cmd) <> "" And Len(cmd) > 0 Then
@@ -306,7 +308,7 @@ End
 Public Sub aumentarFormulario()
 
   Me.W = 665
-  Me.H = 483
+  Me.H = 511
 
 End
 
@@ -351,6 +353,8 @@ Public Sub Timer2_Timer()
       Case "Ir V"
         Shell "xdotool windowactivate " & IDVENTANA
 
+      Case "Pala"
+        funciones.ejecutar_comando("xdotool type '" & extra.aleatoria() & "'")
       Case "Salt"
         ListViewListaOrdenes.MoveTo(Val(Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 16)))
         Filtro = True
@@ -544,16 +548,16 @@ Public Sub Label16_MouseDown()
 
 End
 
-Public Sub ToolButtonEnviarSalidaComando_Click()
-
-  If Len(textoSalidaComando.Text) > 0 And Trim$(textoSalidaComando.Text) <> "" Then
-    ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "Salida Comando: " & textoSalidaComando.Text, Picture.Load("images/terminal.png"))
-    TextAreaEditor.text &= "Salida Comando: " & textoSalidaComando.Text & "\n"
-    ButtonIzquierdaRaton.SetFocus()
-    modificado = True
-  End If
-
-End
+' Public Sub ToolButtonEnviarSalidaComando_Click()
+'
+'   If Len(textoSalidaComando.Text) > 0 And Trim$(textoSalidaComando.Text) <> "" Then
+'     ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "Salida Comando: " & textoSalidaComando.Text, Picture.Load("images/terminal.png"))
+'     TextAreaEditor.text &= "Salida Comando: " & textoSalidaComando.Text & "\n"
+'     ButtonIzquierdaRaton.SetFocus()
+'     modificado = True
+'   End If
+'
+' End
 
 Public Sub ButtonDetectarVentana_Click()
 
@@ -570,5 +574,20 @@ Public Sub ButtonIrVentana_Click()
   TextAreaEditor.text &= "Ir Ventana" & "\n"
   ButtonIzquierdaRaton.SetFocus()
   modificado = True
+
+End
+
+Public Sub ButtonAleatoria_Click()
+
+  ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "Palabra Aleatoria", Picture.Load("images/aleatoria16x16.png"))
+  TextAreaEditor.text &= "Palabra Aleatoria" & "\n"
+  ButtonIzquierdaRaton.SetFocus()
+  modificado = True
+
+End
+
+Public Sub ButtonTeclasDisponibles_Click()
+
+  formteclas.show()
 
 End

@@ -1,0 +1,13 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,31,95)
+  { TextArea1 TextArea
+    MoveScaled(1,1,29,91)
+    Text = ("BackSpace\nTab\nLinefeed\nClear\nReturn\nPause\nScroll_Lock\nSys_Req\nEscape\nDelete\nMulti_key\nCodeinput\nSingleCandidate\nMultipleCandidate\nPreviousCandidate\nKanji\nMuhenkan\nHenkan_Mode\nHenkan\nRomaji\nHiragana\nKatakana\nHiragana_Katakana\nZenkaku\nHankaku\nZenkaku_Hankaku\nTouroku\nMassyo\nKana_Lock\nKana_Shift\nEisu_Shift\nEisu_toggle\nKanji_Bangou\nZen_Koho\nMae_Koho\nHome\nLeft\nUp\nRight\nDown\nPrior\nPage_Up\nNext\nPage_Down\nEnd\nBegin\nSelect\nPrint\nExecute\nInsert\nUndo\nRedo\nMenu\nFind\nCancel\nHelp\nBreak\nMode_switch\nscript_switch\nNum_Lock\nKP_Space\nKP_Tab\nKP_Enter\nKP_F1\nKP_F2\nKP_F3\nKP_F4\nKP_Home\nKP_Left\nKP_Up\nKP_Right\nKP_Down\nKP_Prior\nKP_Page_Up\nKP_Next\nKP_Page_Down\nKP_End\nKP_Begin\nKP_Insert\nKP_Delete\nKP_Equal\nKP_Multiply\nKP_Add\nKP_Separator\nKP_Subtract\nKP_Decimal\nKP_Divide\nKP_0\nKP_1\nKP_2\nKP_3\nKP_4\nKP_5\nKP_6\nKP_7\nKP_8\nKP_9\nF1\nF2\nF3\nF4\nF5\nF6\nF7\nF8\nF9\nF10\nF11\nL1\nF12\nL2\nF13\nL3\nF14\nL4\nF15\nL5\nF16\nL6\nF17\nL7\nF18\nL8\nF19\nL9\nF20\nL10\nF21\nR1\nF22\nR2\nF23\nR3\nF24\nR4\nF25\nR5\nF26\nR6\nF27\nR7\nF28\nR8\nF29\nR9\nF30\nR10\nF31\nR11\nF32\nR12\nF33\nR13\nF34\nR14\nF35\nR15\nShift_L\nShift_R\nControl_L\nControl_R\nCaps_Lock\nShift_Lock\nMeta_L\nMeta_R\nAlt_L\nAlt_R\nSuper_L\nSuper_R\nHyper_L\nHyper_R\n")
+  }
+  { URLLabel1 URLLabel
+    MoveScaled(2,92,27,3)
+    Text = ("https://gitlab.com/cunidev/gestures/-/wikis/xdotool-list-of-key-codes")
+  }
+}

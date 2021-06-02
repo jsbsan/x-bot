@@ -277,18 +277,21 @@
     }
     { Label16 Label
       Move(84,133,175,21)
+      Visible = False
       Enabled = False
       Text = ("Enviar salida de  este comando::")
     }
     { !textoSalidaComando TextBox
       Move(252,133,84,21)
       #Public = True
+      Visible = False
       Font = Font["-2"]
       ToolTip = ("Texto a enviar")
     }
     { !ToolButtonEnviarSalidaComando ToolButton
       Move(336,133,28,21)
       #Public = True
+      Visible = False
       Picture = Picture["images/add1-.png"]
       Border = True
     }
@@ -311,6 +314,15 @@
     }
     { textnombreventana TextBox
       Move(84,350,70,28)
+    }
+    { ButtonAleatoria Button
+      Move(84,140,119,21)
+      Text = ("Palabra Aleatoria")
+    }
+    { ButtonTeclasDisponibles Button
+      Move(105,224,126,21)
+      Text = ("Nombre de Teclas")
+      Picture = Picture["icon:/16/help"]
     }
   }
   { Timer2 #Timer

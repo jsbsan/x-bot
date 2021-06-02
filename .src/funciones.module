@@ -1,5 +1,6 @@
 ' Gambas module file
 
+'' fuentes: https://atareao.es/software/utilidades/xdotool-simulando-raton-y-teclado/
 ' Gambas class file
 
 Public Function ejecutar_comando(comando As String) As String
