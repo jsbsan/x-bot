@@ -1,0 +1,593 @@
+' Gambas class file
+
+Public Filtro As Boolean ' Control de salto de linea
+Public repitevalor As Integer = 40
+Public destino As String
+Public modificado As Boolean
+
+Public IDVENTANA As String
+
+Public Sub _new()
+
+End
+
+Public Sub Form_Open()
+
+  TextLabelVersion.text = "Versión: " & Application.Version
+  ModuleUpdate.comprobar("xbot", Application.Version, "http://seguimientodeapuestas.blogspot.com.es/2014/03/xbot.html", "sin comentario")
+
+  Me.Center
+
+End
+
+Public Sub ToolButtonVerCoordenadasRaton_Click()
+  ' Para iniciar la captura de X Y mouse
+
+  If ToolButtonVerCoordenadasRaton.value = True Then
+    Timer1.Enabled = True
+  Else
+    Timer1.Enabled = False
+
+  End If
+
+End
+
+Public Sub Timer1_Timer()
+  ' Capturamos las coordenadas del mouse y las mostramos en las cajas de texto correspondientes
+
+  mousex.Text = funciones.xmouse(funciones.ejecutar_comando("xdotool getmouselocation"))
+  mousey.Text = funciones.ymouse(funciones.ejecutar_comando("xdotool getmouselocation"))
+
+End
+
+Public Sub ToolButtonPosCursor_Click()
+  'Agregamos a la lista
+
+  modificado = True
+  ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "Mouse: " & mousex.Text & "," & mousey.Text, Picture.Load("images/mouse.png"))
+  TextAreaEditor.text &= "Mouse: " & mousex.Text & "," & mousey.Text & "\n"
+
+End
+
+Public Sub CapturarMouse_Click()
+  ' Iniciamos la captura del mouse (desde el menu)
+
+  If ToolButtonVerCoordenadasRaton.Value = True Then
+    ToolButtonVerCoordenadasRaton.Value = False
+  Else
+    ToolButtonVerCoordenadasRaton.Value = True
+  End If
+
+  ToolButtonVerCoordenadasRaton_Click
+
+End
+
+Public Sub ButtonIzquierdaRaton_Click()
+  ' Agregamos a la lista
+
+  modificado = True
+  ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "click(1)", Picture.Load("images/click.png"))
+  TextAreaEditor.text &= "click(1)" & "\n"
+
+End
+
+Public Sub ButtonDerechaRaton_Click()
+  ' Agregamos a la lista
+
+  modificado = True
+  ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "click(2)", Picture.Load("images/click.png"))
+  TextAreaEditor.text &= "click(2)" & "\n"
+
+End
+
+Public Sub ToolButtonTiempoDeEspera_Click()
+  ' Agregamos a la lista y verificamos si el valor ingresado es numero y entero
+
+  ' [GB2:ISTY] IF IsNumber(Val(segundos.Text)) AND IsInteger(Val(segundos.Text)) THEN
+  If TypeOf(Val(segundos.Text)) <= gb.Float And TypeOf(Val(segundos.Text)) = gb.Integer Then
+    ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "Esperar (Seg): " & segundos.Text, Picture.Load("images/wait.png"))
+    TextAreaEditor.text &= "Esperar (Seg): " & segundos.Text & "\n"
+    ButtonIzquierdaRaton.SetFocus()
+    modificado = True
+  Else
+    Message.Error("Error formato tiempo")
+
+  End If
+
+End
+
+Public Sub ToolButtonEnviarTexto_Click()
+  ' Agregamos a la lista y verficamos que no este vacio el campo
+
+  If Len(texto.Text) > 0 And Trim$(texto.Text) <> "" Then
+    ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "Texto: " & texto.Text, Picture.Load("images/text.png"))
+    TextAreaEditor.text &= "Texto: " & texto.Text & "\n"
+    ButtonIzquierdaRaton.SetFocus()
+    modificado = True
+  End If
+
+End
+
+Public Sub ToolButtonComando_Click()
+  ' Agregamos a la lista y verificamos que no este vacio el campo
+
+  If Len(comand.Text) > 0 And Trim$(comand.Text) <> "" Then
+    ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "Comando: " & comand.Text, Picture.Load("images/terminal.png"))
+    TextAreaEditor.text &= "Comando: " & comand.Text & "\n"
+    ButtonIzquierdaRaton.SetFocus()
+    modificado = True
+  End If
+
+End
+
+Public Sub ToolButtonNuevaScript_Click()
+  ' Limpiamos la lista
+
+  ' Guardamos la lista
+  Dialog.Title = "Nuevo Script"
+  Dialog.Filter = ["*.script", "Script X-Bot"] ' Extencion del archivo
+  If Not Dialog.SaveFile() Then
+    If Right$(Dialog.Path, 7) <> ".script" Then ' Verificamos si el usuario ingreso la extencion
+      destino = Dialog.Path & ".script" ' Agregamos extencion al archivo
+    Else
+      destino = Dialog.Path
+    End If
+    modificado = False
+    TabStrip1.Enabled = True
+    TextAreaEditor.text = ""
+    Label11.text = ""
+    File.Save(destino, "") ' Guardamos
+    ListViewListaOrdenes.Clear()
+
+  End If
+Catch
+  Print "Se ha producido un Error "
+  Print Error.Text
+  Print Error.Where
+
+End
+
+Public Sub ToolButtonGuardarScript_Click()
+
+  ListViewListaOrdenes.MoveFirst   ' Nos ubicamos en el primer registro de la lista
+  If ListViewListaOrdenes.Count < 1 Then  ' verficamos si la lista contiene elementos
+    Return  ' si no contiene elementos no procedemos
+  End If
+
+  Do While ListViewListaOrdenes.Available   ' realizamos un recorrido por todos los elementos de la lista
+    TextArea1.Text &= ListViewListaOrdenes.Item.Text & "\n" ' Agregamos el contenido en una textarea para guardalos mas adelante
+    ListViewListaOrdenes.MoveNext   ' nos movemos en la lista
+  Loop
+
+  ' Guardamos la lista
+  Dialog.Title = "Guardar Script"
+  Dialog.Filter = ["*.script", "Script X-Bot"] ' Extencion del archivo
+  If Not Dialog.SaveFile() Then
+    If Right$(Dialog.Path, 7) <> ".script" Then ' Verificamos si el usuario ingreso la extencion
+      destino = Dialog.Path & ".script" ' Agregamos extencion al archivo
+    Else
+      destino = Dialog.Path
+    End If
+    File.Save(destino, TextArea1.Text) ' Guardamos
+    modificado = False
+  End If
+Catch
+  Message.Error("ohhhh!!!! error!!!")
+
+End
+
+Public Sub ToolButtonAbrirScript_Click()
+
+  ' Cargar Script
+  Dialog.Title = "Seleccione un archivo"
+  Dialog.Filter = ["*.script", "Script X-Bot"]
+
+  If Not Dialog.OpenFile() Then
+
+    destino = Dialog.Path
+    cargaDeDatos(Dialog.Path)
+  End If
+Catch
+  Message.Error("ohhhh!!!! error!!!")
+
+End
+
+Public Sub cargaDeDatos(fichero As String)
+
+  Dim pic As String
+  Dim cmd As String
+  Dim arr_cadenas As String[]
+
+  If Not Exist(fichero) Then
+    modificado = False
+    TabStrip1.Enabled = True
+    Return
+  Endif
+
+  arr_cadenas = Split(File.LOAD(fichero), "\n") ' Cargamos el archivo en un array y lo dividimos por saltos de linea
+  destino = fichero
+  ListViewListaOrdenes.Clear() ' Limpiamos la lista
+  For Each cmd In arr_cadenas ' Recorremos el array
+    ' Agregamos el icono correspondiente
+
+    Select Case Left$(cmd, 4) ' Verificamos el comando con el cual inicia
+      Case "Mous" ' Movimiento del Mouse
+        pic = "images/mouse.png"
+      Case "Coma" ' Comando
+        pic = "images/terminal.png"
+      Case "clic" ' Click
+        pic = "images/click.png"
+      Case "Text" ' Texto
+        pic = "images/text.png"
+      Case "Espe" ' Esperar
+        pic = "images/wait.png"
+      Case "Salt" ' Salto de linea
+        pic = "images/saltar.png"
+      Case "Tecl" 'pulsación de tecla
+        pic = "images/keyboard16x16.png"
+      Case "Sali"
+        pic = "images/terminal.png"
+      Case "Ir V"
+        pic = "images/irVentana16x16.png"
+      Case "Dete"
+        pic = "images/conseguirIdVentana16x16.png"
+      Case "Pala"
+        pic = "images/aleatoria16x16.jpg"
+    End Select
+    ' Verificamos que el elemento del array no este vacido o nulo
+    If Trim$(cmd) <> "" And Len(cmd) > 0 Then
+      ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, cmd, Picture.Load(pic))
+    End If
+
+  Next
+  'relleno pestaña del editor...
+  TextAreaEditor.text = File.Load(fichero)
+
+  modificado = False
+  TabStrip1.Enabled = True
+
+Catch
+  Message.Info("ohhhh Error:" & Error.text)
+
+End
+
+Public Sub ToolButtonSaltarAlaLinea_Click()
+  ' Agregamos a la lista y verificamos que sea numerico y entero
+
+  ' [GB2:ISTY] IF IsNumber(Val(lineax.Text)) AND IsInteger(Val(lineax.Text)) THEN
+  If TypeOf(Val(lineax.Text)) <= gb.Float And TypeOf(Val(lineax.Text)) = gb.Integer Then
+    ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "Saltar a Linea: " & lineax.Text, Picture.Load("images/saltar.png"))
+    TextAreaEditor.text &= "Saltar a Linea: " & lineax.Text & "\n"
+    ButtonIzquierdaRaton.SetFocus()
+    modificado = True
+  Else
+    Message.Error("Error formato linea")
+  End If
+
+End
+
+Public Sub ListViewListaOrdenes_Click()
+  ' Para mostrar al usuario en que linea esta ubicado
+
+  Label11.Caption = "Linea: " & ListViewListaOrdenes.Item.Key & " (" & ListViewListaOrdenes.Item.text & ")"
+
+End
+
+Public Sub ListViewListaOrdenes_Select()
+  ' Para mostrar al usuario en que linea esta ubicado
+
+  Label11.Caption = "Linea: " & ListViewListaOrdenes.Item.Key & " (" & ListViewListaOrdenes.Item.text & ")"
+
+End
+
+Public Sub InsertarXY_Click()
+  ' Menu para Insertar las coordenadas del mouse
+
+  ToolButtonPosCursor_Click()
+
+End
+
+Public Sub ButtonIniciar_Click()
+  ' Boton Iniciar
+
+  reducirformulario()
+  ListViewListaOrdenes.MoveFirst
+  Timer2.Enabled = True
+  repitevalor = 0
+  Me.Title = "Ejecutando: " & File.BaseName(destino)
+
+End
+
+Public Sub reducirformulario()
+
+  Me.W = 357
+  Me.H = 56
+
+End
+
+Public Sub aumentarFormulario()
+
+  Me.W = 665
+  Me.H = 511
+
+End
+
+Public Sub ButtonCancelar_Click()
+  ' Boton Cancelar
+
+  Timer2.Enabled = False
+
+End
+
+Public Sub Timer2_Timer()
+  ' Recorrido del script
+
+  If ListViewListaOrdenes.Available Then 'Para controlar que no estamos en el final de la lista
+    Filtro = False ' Para controlar si vamos a saltar una linea
+    Label11.Caption = "Ejecutando: " & ListViewListaOrdenes.Item.Key & " (" & ListViewListaOrdenes.Item.text & ")" ' Mensaje de estado
+    Select Case Left$(ListViewListaOrdenes.item.Text, 4) ' Verificamos el comando que se realizara
+      Case "Mous"
+        funciones.ejecutar_comando("xdotool mousemove " & Replace$(Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 6), ",", " "))
+      Case "Coma"
+        funciones.ejecutar_comando(Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 9))
+      Case "clic"
+        ' Verificamos si es click derecho o izquierdo
+        If Mid$(ListViewListaOrdenes.item.Text, 7, 1) = 1 Then
+          funciones.ejecutar_comando("xdotool click 1")
+        Else
+          funciones.ejecutar_comando("xdotool click 3")
+        End If
+      Case "Text"
+        funciones.ejecutar_comando("xdotool type '" & Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 6) & "'")
+      Case "Tecl"
+        funciones.ejecutar_comando("xdotool key " & Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 6))
+      Case "Sali"
+        funciones.ejecutar_comando(Replace(ListViewListaOrdenes.item.Text, "Salida Comando: ", "") & "| xdotool type") ''uso tuberia para mandar lo que genera el comando
+
+      Case "Espe"
+        Sleep Val(Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 14))
+
+      Case "Dete"
+        Shell "xdotool search --name \"" & Replace(ListViewListaOrdenes.item.Text, "Detectar Id Ventana: ", "") & "\" | head -1" To IDVENTANA
+        Print IDVENTANA
+      Case "Ir V"
+        Shell "xdotool windowactivate " & IDVENTANA
+
+      Case "Pala"
+        funciones.ejecutar_comando("xdotool type '" & extra.aleatoria() & "'")
+      Case "Salt"
+        ListViewListaOrdenes.MoveTo(Val(Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 16)))
+        Filtro = True
+
+    End Select
+
+    If Filtro = False Then
+      ListViewListaOrdenes.MoveNext
+    End If
+  Else
+    Label11.Caption = "Finalizado"
+    If repitevalor > 1 Then
+      repitevalor -= 1
+      ListViewListaOrdenes.MoveFirst()
+      Timer2.Enabled = True
+      Me.Title = "Ejecutandose: " & File.BaseName(destino) & " (" & repitevalor & ")"
+    Else
+      Timer2.Enabled = False
+      Me.Title = "X-bot"
+      aumentarFormulario()
+    Endif
+  End If
+
+End
+
+Public Sub Iniciar_Click()
+  ' Menu Iniciar
+
+  ButtonIniciar_Click()
+
+End
+
+Public Sub Detener_Click()
+  ' Menu Detener
+
+  ButtonCancelar_Click()
+
+End
+
+Public Sub salir_Click()
+  ' Menu Salir
+
+  Me.Close()
+
+End
+
+Public Sub ToolButtonRepite_Click()
+
+  reducirformulario()
+  ' Boton Iniciar
+  If ValueBoxRepite.Value = 0 Then ValueBoxRepite.Value = 10
+  repitevalor = ValueBoxRepite.Value
+  ListViewListaOrdenes.MoveFirst
+  Timer2.Enabled = True
+
+End
+
+'----------------------------------------------------------
+'editor
+'----------------------------------------------------------
+Public Sub ToolButtonGuardarEditor_Click()
+
+  guardaEditor()
+
+End
+
+Public Sub TextAreaEditor_LostFocus()
+
+  'cuando pierde el foco, tambien guardamos los datos...
+
+  guardaEditor()
+
+End
+
+Public Sub guardaEditor()
+
+  If destino = "" Then
+    ' Guardamos la lista
+    Dialog.Title = "Guardar Script"
+    Dialog.Filter = ["*.script", "Script X-Bot"] ' Extencion del archivo
+    If Not Dialog.SaveFile() Then
+      If Right$(Dialog.Path, 7) <> ".script" Then ' Verificamos si el usuario ingreso la extencion
+        destino = Dialog.Path & ".script" ' Agregamos extencion al archivo
+      Else
+        destino = Dialog.Path
+      Endif
+    Else
+      Return
+    Endif
+
+  Endif
+
+  If destino = ".script" Then
+    destino = ""
+    Return
+  Endif
+
+  File.Save(destino, TextAreaEditor.text)
+  'actualizar contenido del listado de ordenes
+  Wait 0.1
+  modificado = False
+  cargaDeDatos(destino)
+  ' Message.Info("Guardado..." & gb.CrLf & destino)
+Catch
+  Message.Error("ohhhh!!!! error!!!")
+
+End
+
+Public Sub TabStrip1_Click()
+
+  If TabStrip1.index = 0 And destino <> "" Then
+    'recargar los datos...
+    cargaDeDatos(destino)
+  Endif
+
+End
+
+Public Sub Repite_Click()
+
+  ToolButtonRepite_Click()
+
+End
+
+Public Sub ToggleButtonIniciar2_Click()
+
+  ButtonIniciar_Click()
+
+End
+
+Public Sub ToggleButtonRepetir2_Click()
+
+  ToolButtonRepite_Click()
+
+End
+
+Public Sub ToggleButtonDetener_Click()
+
+  Timer2.Enabled = False
+
+End
+
+Public Sub segundos_KeyPress()
+
+End
+
+Public Sub ToggleButtonTecla_Click()
+
+End
+
+Public Sub TextAreaEditor_Change()
+
+  If modificado = True Then
+    guardaEditor()
+  Endif
+
+End
+
+Public Sub ToggleButtonTeclaA_Click()
+
+  If ToggleButtonTeclaA.value = True Then
+    ToggleButtonTeclaA.tag = True
+    ToolButtonVerCoordenadasRaton.Value = True
+  Else
+    ToggleButtonTeclaA.tag = False
+    ToolButtonVerCoordenadasRaton.Value = False
+  Endif
+
+End
+
+Public Sub Form_Close()
+
+  'finalizar
+  Timer1.Stop
+  Timer2.Stop
+
+End
+
+Public Sub ToolButtontecla_Click()
+  ' Agregamos a la lista y verificamos que no este vacio el campo
+
+  If Len(comandotecla.Text) > 0 And Trim$(comandotecla.Text) <> "" Then
+    ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "Comando: " & comandotecla.Text, Picture.Load("images/keyboard16x16.png"))
+    TextAreaEditor.text &= "Tecla: " & comandotecla.Text & "\n"
+    ButtonIzquierdaRaton.SetFocus()
+    modificado = True
+  End If
+
+End
+
+Public Sub Label16_MouseDown()
+
+End
+
+' Public Sub ToolButtonEnviarSalidaComando_Click()
+'
+'   If Len(textoSalidaComando.Text) > 0 And Trim$(textoSalidaComando.Text) <> "" Then
+'     ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "Salida Comando: " & textoSalidaComando.Text, Picture.Load("images/terminal.png"))
+'     TextAreaEditor.text &= "Salida Comando: " & textoSalidaComando.Text & "\n"
+'     ButtonIzquierdaRaton.SetFocus()
+'     modificado = True
+'   End If
+'
+' End
+
+Public Sub ButtonDetectarVentana_Click()
+
+  ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "Detectar Id Ventana: " & textnombreventana.text, Picture.Load("images/conseguirIdVentana16x16.png"))
+  TextAreaEditor.text &= "Detectar Id Ventana: " & textnombreventana.text & "\n"
+  ButtonIzquierdaRaton.SetFocus()
+  modificado = True
+
+End
+
+Public Sub ButtonIrVentana_Click()
+
+  ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "Ir Ventana detectada", Picture.Load("images/irVentana16x16.png"))
+  TextAreaEditor.text &= "Ir Ventana" & "\n"
+  ButtonIzquierdaRaton.SetFocus()
+  modificado = True
+
+End
+
+Public Sub ButtonAleatoria_Click()
+
+  ListViewListaOrdenes.Add(ListViewListaOrdenes.Count, "Palabra Aleatoria", Picture.Load("images/aleatoria16x16.png"))
+  TextAreaEditor.text &= "Palabra Aleatoria" & "\n"
+  ButtonIzquierdaRaton.SetFocus()
+  modificado = True
+
+End
+
+Public Sub ButtonTeclasDisponibles_Click()
+
+  formteclas.show()
+
+End

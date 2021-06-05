@@ -1,0 +1,46 @@
+' Gambas module file
+
+Public contador As Integer = -1
+Public ConjuntoPalabras As String[]
+
+Public Function aleatoria() As String
+
+  If IsNull(ConjuntoPalabras) Then
+    ConjuntoPalabras = Split(File.Load("ListaPalabras.txt"), "\n")
+    ConjuntoPalabras = ListaAleatoria(ConjuntoPalabras)
+  Endif
+  contador += 1
+
+  If contador > ConjuntoPalabras.count - 1 Then
+    contador = 0
+    ConjuntoPalabras = ListaAleatoria(ConjuntoPalabras)
+  Endif
+
+  Return ConjuntoPalabras[contador]
+
+End
+
+Private Function ListaAleatoria(lista As String[]) As String[]
+
+  Dim i As Integer
+  Dim listaAleatoria As New String[]
+  Dim repite As Integer
+
+  Randomize
+  i = Rnd(0, lista.max)
+
+  'repite tantas veces, hasta vaciar la lista
+
+  For repite = 0 To lista.max
+
+    i = Rnd(0, lista.max + 1)
+
+    Try ListaAleatoria.Add(lista.Extract(i)[0])
+
+  Next
+
+  If lista.max = 0 Then ListaAleatoria.Add(lista[0])
+
+  Return ListaAleatoria
+
+End

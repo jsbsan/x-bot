@@ -1,0 +1,28 @@
+* Sat Jun 05 2021 Julio Sánchez Berro <jusabejusabe@gmail.com> 0.0.14
+- cambio tab de situacion y ayuda de teclas en el lado izq para no ser tapada por el formulario principal
+
+* Wed Jun 02 2021 Julio Sánchez Berro <jusabejusabe@gmail.com> 0.0.12
+- añado boton de generar palabra aleatoria y ayuda para nombre de teclas
+
+* Tue Jun 01 2021 Julio Sánchez Berro <jusabejusabe@gmail.com> 0.0.11
+- ir a una ventana concreta
+
+* Tue Jun 01 2021 Julio Sánchez Berro <jusabejusabe@gmail.com> 0.0.11
+- guardar como indica el nombre del fichero donde se guarda
+
+* Tue Jun 01 2021 Julio Sánchez Berro <jusabejusabe@gmail.com> 0.0.10
+- mejoras en ejecucion minimiza y muestra el numero de repeticiones disminuyendo
+
+* Mon May 31 2021 Julio Sánchez Berro <jusabejusabe@gmail.com> 0.0.10
+
+* Tue Mar 25 2014 Julio Sánchez Berro <jusabejusabe@gmail.com> 0.0.7
+- Indico teclas Mays+M y Mays+A
+
+* Mon Mar 24 2014 Julio Sánchez Berro <jusabejusabe@gmail.com> 0.0.6
+- Mejoras en botones y quito application busy para ques se pueda parar
+
+* Sun Mar 23 2014 Julio Sánchez Berro <jusabejusabe@gmail.com> 0.0.5
+
+* Sat Mar 22 2014 Julio Sánchez Berro <jusabejusabe@gmail.com> 0.0.4
+- Lanzamiento inicial
+

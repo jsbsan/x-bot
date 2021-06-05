@@ -1,0 +1,14 @@
+' Gambas class file
+
+Public Sub Form_Show()
+
+  Me.X = 10
+  TextArea1.Pos = 0
+
+  Me.Title = "Nombre de Teclas"
+
+End
+
+Public Sub Form_Open()
+
+End
