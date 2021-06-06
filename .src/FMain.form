@@ -361,12 +361,16 @@
       Move(7,49,259,364)
     }
     { ToolButtonGuardarEditor ToolButton
-      Move(49,7,168,35)
+      Move(91,7,168,35)
       ToolTip = ("Guardar Script")
       AutoResize = True
       Text = ("Guardar Cambios")
       Picture = Picture["icon:/24/save"]
       Border = True
+    }
+    { ButtonLimpiar Button
+      Move(14,7,35,35)
+      Picture = Picture["images/limpiar.png"]
     }
     Index = 1
     Text = ("Visor Ordenes")

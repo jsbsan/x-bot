@@ -189,6 +189,7 @@ Public Sub ToolButtonNuevaScript_Click()
     End If
     modificado = False
     TabStrip1.Enabled = True
+
     TextAreaEditor.text = ""
     Label11.text = ""
     File.Save(destino, "") ' Guardamos
@@ -266,6 +267,7 @@ Public Sub cargaDeDatos(fichero As String)
   arr_cadenas = Split(File.LOAD(fichero), "\n") ' Cargamos el archivo en un array y lo dividimos por saltos de linea
   destino = fichero
   ListViewListaOrdenes.Clear() ' Limpiamos la lista
+  TextAreaEditor.Text = ""
   For Each cmd In arr_cadenas ' Recorremos el array
     ' Agregamos el icono correspondiente
 
@@ -486,7 +488,7 @@ Public Sub TextAreaEditor_LostFocus()
 
   'cuando pierde el foco, tambien guardamos los datos...
 
-' guardaEditor()
+  ' guardaEditor()
 
 End
 
@@ -667,9 +669,17 @@ End
 Public Sub recienteMenu_Click()
 
   'abrir slot
+  ListViewListaOrdenes.Clear()
   TextAreaEditor.Text = "" 'vaciar editor
   destino = Last.tag 'donde guardo la ruta completa
 
   cargaDeDatos(destino)
+
+End
+
+Public Sub ButtonLimpiar_Click()
+
+  TextAreaEditor.Text = ""
+  ListViewListaOrdenes.Clear()
 
 End
