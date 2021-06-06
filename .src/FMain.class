@@ -16,7 +16,58 @@ Public Sub Form_Open()
   TextLabelVersion.text = "Versión: " & Application.Version
   ModuleUpdate.comprobar("xbot", Application.Version, "http://seguimientodeapuestas.blogspot.com.es/2014/03/xbot.html", "sin comentario")
 
+  menuf1.tag = Settings["menu1", "reciente 1"]
+  menuf2.tag = Settings["menu2", "reciente 2"]
+  menuf3.tag = Settings["menu3", "reciente 3"]
+  menuf4.tag = Settings["menu4", "reciente 4"]
+  menuf5.tag = Settings["menu5", "reciente 5"]
+
+  compruebareciente(menuf1)
+
+  compruebareciente(menuf2)
+  compruebareciente(menuf3)
+  compruebareciente(menuf4)
+  compruebareciente(menuf5)
+
   Me.Center
+
+End
+
+Public Sub compruebareciente(m As Menu)
+
+  If Exist(m.tag) Then
+    m.text = file.basename(m.tag)
+  Else
+    m.text = m.tag
+  Endif
+
+End
+
+Public Sub agregoRecientes(destino As String)
+
+  'compruebo si existe en alguno de los slot
+  If menuf1.Tag = destino Then Return
+  If menuf2.Tag = destino Then Return
+  If menuf3.Tag = destino Then Return
+  If menuf4.Tag = destino Then Return
+  If menuf5.Tag = destino Then Return
+
+  'si no exite lo agrego.
+
+  menuf5.Text = menuf4.Text
+  menuf5.Tag = menuf4.Tag
+
+  menuf4.Text = menuf3.Text
+  menuf4.Tag = menuf3.Tag
+
+  menuf3.Text = menuf2.Text
+  menuf3.Tag = menuf2.Tag
+
+  menuf2.Text = menuf1.Text
+  menuf2.Tag = menuf1.Tag
+
+  menuf1.Text = File.BaseName(destino)
+  menuf1.Tag = destino
 
 End
 
@@ -89,6 +140,7 @@ Public Sub ToolButtonTiempoDeEspera_Click()
     TextAreaEditor.text &= "Esperar (Seg): " & segundos.Text & "\n"
     ButtonIzquierdaRaton.SetFocus()
     modificado = True
+    TextAreaEditor.SetFocus()
   Else
     Message.Error("Error formato tiempo")
 
@@ -104,6 +156,7 @@ Public Sub ToolButtonEnviarTexto_Click()
     TextAreaEditor.text &= "Texto: " & texto.Text & "\n"
     ButtonIzquierdaRaton.SetFocus()
     modificado = True
+    TextAreaEditor.SetFocus()
   End If
 
 End
@@ -116,6 +169,8 @@ Public Sub ToolButtonComando_Click()
     TextAreaEditor.text &= "Comando: " & comand.Text & "\n"
     ButtonIzquierdaRaton.SetFocus()
     modificado = True
+    TextAreaEditor.SetFocus()
+
   End If
 
 End
@@ -170,6 +225,7 @@ Public Sub ToolButtonGuardarScript_Click()
     End If
     File.Save(destino, TextArea1.Text) ' Guardamos
     modificado = False
+    agregoRecientes(destino)
   End If
 Catch
   Message.Error("ohhhh!!!! error!!!")
@@ -186,6 +242,9 @@ Public Sub ToolButtonAbrirScript_Click()
 
     destino = Dialog.Path
     cargaDeDatos(Dialog.Path)
+
+    agregoRecientes(destino)
+
   End If
 Catch
   Message.Error("ohhhh!!!! error!!!")
@@ -260,6 +319,7 @@ Public Sub ToolButtonSaltarAlaLinea_Click()
     TextAreaEditor.text &= "Saltar a Linea: " & lineax.Text & "\n"
     ButtonIzquierdaRaton.SetFocus()
     modificado = True
+    TextAreaEditor.SetFocus()
   Else
     Message.Error("Error formato linea")
   End If
@@ -517,9 +577,11 @@ Public Sub ToggleButtonTeclaA_Click()
   If ToggleButtonTeclaA.value = True Then
     ToggleButtonTeclaA.tag = True
     ToolButtonVerCoordenadasRaton.Value = True
+    TextAreaEditor.SetFocus()
   Else
     ToggleButtonTeclaA.tag = False
     ToolButtonVerCoordenadasRaton.Value = False
+    TextAreaEditor.SetFocus()
   Endif
 
 End
@@ -529,6 +591,12 @@ Public Sub Form_Close()
   'finalizar
   Timer1.Stop
   Timer2.Stop
+
+  Settings["menu1"] = menuf1.tag
+  Settings["menu2"] = menuf2.tag
+  Settings["menu3"] = menuf3.tag
+  Settings["menu4"] = menuf4.tag
+  Settings["menu5"] = menuf5.tag
 
 End
 
@@ -540,6 +608,7 @@ Public Sub ToolButtontecla_Click()
     TextAreaEditor.text &= "Tecla: " & comandotecla.Text & "\n"
     ButtonIzquierdaRaton.SetFocus()
     modificado = True
+    TextAreaEditor.SetFocus()
   End If
 
 End
@@ -589,5 +658,15 @@ End
 Public Sub ButtonTeclasDisponibles_Click()
 
   formteclas.show()
+
+End
+
+Public Sub recienteMenu_Click()
+
+  'abrir slot
+
+  destino = Last.tag 'donde guardo la ruta completa
+
+  cargaDeDatos(destino)
 
 End

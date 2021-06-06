@@ -46,6 +46,28 @@
       Picture = Picture["icon:/24/close"]
       Shortcut = "Ctrl+Q"
     }
+    { Menu4 Menu
+    }
+    { Menuf1 Menu recienteMenu
+      Name = "Menuf1"
+      Text = ("reciente 1")
+    }
+    { Menuf2 Menu recienteMenu
+      Name = "Menuf2"
+      Text = ("reciente 2")
+    }
+    { Menuf3 Menu recienteMenu
+      Name = "Menuf3"
+      Text = ("reciente 3")
+    }
+    { Menuf4 Menu recienteMenu
+      Name = "Menuf4"
+      Text = ("reciente 4")
+    }
+    { Menuf5 Menu recienteMenu
+      Name = "Menuf5"
+      Text = ("reciente 5")
+    }
   }
   { sd Menu
     Text = ("Autores: Jodacame y Jsbsan")
