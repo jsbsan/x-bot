@@ -245,6 +245,7 @@ Public Sub ToolButtonAbrirScript_Click()
     cargaDeDatos(Dialog.Path)
 
     agregoRecientes(destino)
+    Me.Title = File.basename(destino)
 
   End If
 Catch
@@ -520,6 +521,8 @@ Public Sub guardaEditor()
   Wait 0.1
   modificado = False
   cargaDeDatos(destino)
+  Me.Title = File.basename(destino)
+
   ' Message.Info("Guardado..." & gb.CrLf & destino)
 Catch
   Message.Error("ohhhh!!!! error!!!")
@@ -674,6 +677,7 @@ Public Sub recienteMenu_Click()
   destino = Last.tag 'donde guardo la ruta completa
 
   cargaDeDatos(destino)
+  Me.Title = File.basename(destino)
 
 End
 
