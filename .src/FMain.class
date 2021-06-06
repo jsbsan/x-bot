@@ -486,7 +486,7 @@ Public Sub TextAreaEditor_LostFocus()
 
   'cuando pierde el foco, tambien guardamos los datos...
 
-  guardaEditor()
+' guardaEditor()
 
 End
 
@@ -569,9 +569,9 @@ End
 
 Public Sub TextAreaEditor_Change()
 
-  If modificado = True Then
-    guardaEditor()
-  Endif
+  ' If modificado = True Then
+  '   guardaEditor()
+  ' Endif
 
 End
 
