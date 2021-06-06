@@ -333,6 +333,20 @@
     Move(385,28,273,455)
     Count = 2
     Index = 0
+    Text = ("Editor")
+    Picture = Picture["icon:/16/edit"]
+    { TextAreaEditor TextArea
+      Move(7,49,259,364)
+    }
+    { ToolButtonGuardarEditor ToolButton
+      Move(49,7,168,35)
+      ToolTip = ("Guardar Script")
+      AutoResize = True
+      Text = ("Guardar Cambios")
+      Picture = Picture["icon:/24/save"]
+      Border = True
+    }
+    Index = 1
     Text = ("Visor Ordenes")
     Picture = Picture["images/click.png"]
     { Label11 Label
@@ -344,20 +358,6 @@
       Move(7,28,259,385)
       ToolTip = ("Script: Zona comandos")
       Editable = True
-    }
-    Index = 1
-    Text = ("Editor")
-    Picture = Picture["icon:/16/edit"]
-    { TextAreaEditor TextArea
-      Move(7,49,259,336)
-    }
-    { ToolButtonGuardarEditor ToolButton
-      Move(49,7,168,35)
-      ToolTip = ("Guardar Script")
-      AutoResize = True
-      Text = ("Guardar Cambios")
-      Picture = Picture["icon:/24/save"]
-      Border = True
     }
     Index = 0
   }

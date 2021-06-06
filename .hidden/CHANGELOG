@@ -1,3 +1,6 @@
+* Sat Jun 05 2021 Julio Sánchez Berro <jusabejusabe@gmail.com> 0.0.14
+- cambio tab de situacion y ayuda de teclas en el lado izq para no ser tapada por el formulario principal
+
 * Wed Jun 02 2021 Julio Sánchez Berro <jusabejusabe@gmail.com> 0.0.12
 - añado boton de generar palabra aleatoria y ayuda para nombre de teclas
 
