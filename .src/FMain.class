@@ -369,6 +369,7 @@ Public Sub aumentarFormulario()
 
   Me.W = 665
   Me.H = 511
+  Me.Title = "X-bot"
 
 End
 
@@ -540,12 +541,14 @@ End
 
 Public Sub ToggleButtonIniciar2_Click()
 
+  Me.Title = "x-bot " & File.BaseName(destino)
   ButtonIniciar_Click()
 
 End
 
 Public Sub ToggleButtonRepetir2_Click()
 
+  Me.Title = "x-bot " & File.BaseName(destino)
   ToolButtonRepite_Click()
 
 End
@@ -664,7 +667,7 @@ End
 Public Sub recienteMenu_Click()
 
   'abrir slot
-
+  TextAreaEditor.Text = "" 'vaciar editor
   destino = Last.tag 'donde guardo la ruta completa
 
   cargaDeDatos(destino)
