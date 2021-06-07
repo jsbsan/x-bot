@@ -372,7 +372,7 @@ Public Sub aumentarFormulario()
 
   Me.W = 665
   Me.H = 511
-  Me.Title = "X-bot"
+  Me.Title = File.basename(destino)
 
 End
 
@@ -437,7 +437,7 @@ Public Sub Timer2_Timer()
       Me.Title = "Ejecutandose: " & File.BaseName(destino) & " (" & repitevalor & ")"
     Else
       Timer2.Enabled = False
-      Me.Title = "X-bot"
+      Me.Title = File.basename(destino)
       aumentarFormulario()
     Endif
   End If
@@ -546,14 +546,14 @@ End
 
 Public Sub ToggleButtonIniciar2_Click()
 
-  Me.Title = "x-bot " & File.BaseName(destino)
+  Me.Title = File.BaseName(destino)
   ButtonIniciar_Click()
 
 End
 
 Public Sub ToggleButtonRepetir2_Click()
 
-  Me.Title = "x-bot " & File.BaseName(destino)
+  Me.Title = File.BaseName(destino)
   ToolButtonRepite_Click()
 
 End
