@@ -68,6 +68,22 @@
       Name = "Menuf5"
       Text = ("reciente 5")
     }
+    { Menuf6 Menu recienteMenu
+      Name = "Menuf6"
+      Text = ("reciente 6")
+    }
+    { Menuf7 Menu recienteMenu
+      Name = "Menuf7"
+      Text = ("reciente 7")
+    }
+    { Menuf8 Menu recienteMenu
+      Name = "Menuf8"
+      Text = ("reciente 8")
+    }
+    { Menuf9 Menu recienteMenu
+      Name = "Menuf9"
+      Text = ("reciente 9")
+    }
   }
   { sd Menu
     Text = ("Autores: Jodacame y Jsbsan")

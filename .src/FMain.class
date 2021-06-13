@@ -21,6 +21,10 @@ Public Sub Form_Open()
   menuf3.tag = Settings["menu3", "reciente 3"]
   menuf4.tag = Settings["menu4", "reciente 4"]
   menuf5.tag = Settings["menu5", "reciente 5"]
+  menuf6.tag = Settings["menu6", "reciente 6"]
+  menuf7.tag = Settings["menu7", "reciente 7"]
+  menuf8.tag = Settings["menu8", "reciente 8"]
+  menuf9.tag = Settings["menu9", "reciente 9"]
 
   compruebareciente(menuf1)
 
@@ -28,6 +32,10 @@ Public Sub Form_Open()
   compruebareciente(menuf3)
   compruebareciente(menuf4)
   compruebareciente(menuf5)
+  compruebareciente(menuf6)
+  compruebareciente(menuf7)
+  compruebareciente(menuf8)
+  compruebareciente(menuf9)
 
   Me.Center
 
@@ -51,8 +59,23 @@ Public Sub agregoRecientes(destino As String)
   If menuf3.Tag = destino Then Return
   If menuf4.Tag = destino Then Return
   If menuf5.Tag = destino Then Return
+  If menuf6.Tag = destino Then Return
+  If menuf7.Tag = destino Then Return
+  If menuf8.Tag = destino Then Return
+  If menuf9.Tag = destino Then Return
 
   'si no exite lo agrego.
+  menuf9.Text = menuf8.Text
+  menuf9.Tag = menuf8.Tag
+
+  menuf8.Text = menuf7.Text
+  menuf8.Tag = menuf7.Tag
+
+  menuf7.Text = menuf6.Text
+  menuf7.Tag = menuf6.Tag
+
+  menuf6.Text = menuf5.Text
+  menuf6.Tag = menuf5.Tag
 
   menuf5.Text = menuf4.Text
   menuf5.Tag = menuf4.Tag
@@ -388,7 +411,7 @@ Public Sub Timer2_Timer()
 
   If ListViewListaOrdenes.Available Then 'Para controlar que no estamos en el final de la lista
     Filtro = False ' Para controlar si vamos a saltar una linea
-    Label11.Caption = "Ejecutando: " & ListViewListaOrdenes.Item.Key & " (" & ListViewListaOrdenes.Item.text & ")" ' Mensaje de estado
+    Label11.Caption = ListViewListaOrdenes.Item.Key & " (" & ListViewListaOrdenes.Item.text & ")" ' Mensaje de estado
     Select Case Left$(ListViewListaOrdenes.item.Text, 4) ' Verificamos el comando que se realizara
       Case "Mous"
         funciones.ejecutar_comando("xdotool mousemove " & Replace$(Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 6), ",", " "))
@@ -605,6 +628,10 @@ Public Sub Form_Close()
   Settings["menu3"] = menuf3.tag
   Settings["menu4"] = menuf4.tag
   Settings["menu5"] = menuf5.tag
+  Settings["menu6"] = menuf6.tag
+  Settings["menu7"] = menuf7.tag
+  Settings["menu8"] = menuf8.tag
+  Settings["menu9"] = menuf9.tag
 
 End
 
