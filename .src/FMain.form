@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  Move(0,0,665,511)
+  Move(0,0,595,511)
   #Scaled = False
   Ignore = True
   Text = ("X-Bot")
@@ -368,7 +368,7 @@
     Delay = 500
   }
   { TabStrip1 TabStrip
-    Move(385,28,273,455)
+    Move(385,28,203,455)
     Count = 2
     Index = 0
     Text = ("Editor")
@@ -377,10 +377,9 @@
       Move(7,49,259,364)
     }
     { ToolButtonGuardarEditor ToolButton
-      Move(91,7,168,35)
-      ToolTip = ("Guardar Script")
+      Move(63,7,63,35)
+      ToolTip = ("Guardar Cambios")
       AutoResize = True
-      Text = ("Guardar Cambios")
       Picture = Picture["icon:/24/save"]
       Border = True
     }
@@ -389,7 +388,7 @@
       Picture = Picture["images/limpiar.png"]
     }
     Index = 1
-    Text = ("Visor Ordenes")
+    Text = ("Visor")
     Picture = Picture["images/click.png"]
     { Label11 Label
       Move(7,7,259,21)
@@ -397,7 +396,7 @@
       Text = ("Linea: 0")
     }
     { ListViewListaOrdenes ListView
-      Move(7,28,259,385)
+      Move(7,28,175,385)
       ToolTip = ("Script: Zona comandos")
       Editable = True
     }
@@ -427,21 +426,18 @@
     Border = True
   }
   { ToolButtonAbrirScript ToolButton
-    Move(490,0,84,28)
+    Move(455,0,56,28)
     ToolTip = ("Cargar Script")
-    Text = ("Abrir")
     Picture = Picture["icon:/24/open"]
   }
   { ToolButtonNuevaScript ToolButton
-    Move(574,0,84,28)
+    Move(525,0,56,28)
     ToolTip = ("Nuevo Script")
-    Text = ("Nuevo")
     Picture = Picture["icon:/24/new"]
   }
   { ToolButtonGuardarScript ToolButton
-    Move(392,0,91,28)
+    Move(392,0,49,28)
     ToolTip = ("Guardar Script")
-    Text = ("Guardar")
     Picture = Picture["icon:/24/save"]
   }
 }
