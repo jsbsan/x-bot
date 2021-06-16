@@ -393,7 +393,7 @@ End
 
 Public Sub aumentarFormulario()
 
-  Me.W = 665
+  Me.W = 595
   Me.H = 511
   Me.Title = File.basename(destino)
 
