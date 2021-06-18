@@ -380,7 +380,7 @@ Public Sub ButtonIniciar_Click()
   ListViewListaOrdenes.MoveFirst
   Timer2.Enabled = True
   repitevalor = 0
-  Me.Title = "Ejecutando: " & File.BaseName(destino)
+  Me.Title = File.BaseName(destino)
 
 End
 
@@ -402,7 +402,7 @@ End
 Public Sub ButtonCancelar_Click()
   ' Boton Cancelar
 
-  Timer2.Enabled = False
+  ToggleButtonDetener_Click()
 
 End
 
@@ -584,6 +584,7 @@ End
 Public Sub ToggleButtonDetener_Click()
 
   Timer2.Enabled = False
+  aumentarFormulario()
 
 End
 
