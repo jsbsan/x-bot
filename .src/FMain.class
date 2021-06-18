@@ -457,7 +457,7 @@ Public Sub Timer2_Timer()
       repitevalor -= 1
       ListViewListaOrdenes.MoveFirst()
       Timer2.Enabled = True
-      Me.Title = "Ejecutandose: " & File.BaseName(destino) & " (" & repitevalor & ")"
+      Me.Title = File.BaseName(destino) & " (" & repitevalor & ")"
     Else
       Timer2.Enabled = False
       Me.Title = File.basename(destino)
