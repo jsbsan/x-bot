@@ -2,7 +2,7 @@
 Title=x-bot
 Startup=FMain
 Icon=images/x-bot.png
-Version=0.0.24
+Version=0.0.25
 Component=gb.image
 Component=gb.qt4
 Component=gb.form
@@ -21,7 +21,7 @@ Maintainer=Julio Sánchez Berro
 Address=jusabejusabe@gmail.com
 Url=http://www.jsbsan.blogspot.com.es/
 License=General Public Licence
-PackageName=x-bot-0.0.24
+PackageName=x-bot-0.0.25
 CreateEachDirectory=1
 Packager=1
 Systems=debian

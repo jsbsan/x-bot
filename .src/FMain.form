@@ -10,6 +10,10 @@
   Stacking = Window.Above
   { Acciones Menu
     Text = ("Acciones")
+    { NuevoScript Menu
+      Text = ("Nuevo Script")
+      Picture = Picture["icon:/16/new"]
+    }
     { Iniciar Menu
       Text = ("Iniciar")
       Picture = Picture["images/start2.png"]
@@ -369,12 +373,12 @@
   }
   { TabStrip1 TabStrip
     Move(385,28,203,455)
-    Count = 2
+    Count = 1
     Index = 0
     Text = ("Editor")
     Picture = Picture["icon:/16/edit"]
     { TextAreaEditor TextArea
-      Move(7,49,259,364)
+      Move(7,49,189,357)
     }
     { ToolButtonGuardarEditor ToolButton
       Move(63,7,63,35)
@@ -386,19 +390,6 @@
     { ButtonLimpiar Button
       Move(14,7,35,35)
       Picture = Picture["images/limpiar.png"]
-    }
-    Index = 1
-    Text = ("Visor")
-    Picture = Picture["images/click.png"]
-    { Label11 Label
-      Move(7,7,259,21)
-      ToolTip = ("Estado")
-      Text = ("Linea: 0")
-    }
-    { ListViewListaOrdenes ListView
-      Move(7,28,175,385)
-      ToolTip = ("Script: Zona comandos")
-      Editable = True
     }
     Index = 0
   }
@@ -439,5 +430,11 @@
     Move(392,0,49,28)
     ToolTip = ("Guardar Script")
     Picture = Picture["icon:/24/save"]
+  }
+  { ListViewListaOrdenes ListView
+    Move(392,413,189,63)
+    Visible = False
+    ToolTip = ("Script: Zona comandos")
+    Editable = True
   }
 }

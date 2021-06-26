@@ -214,7 +214,7 @@ Public Sub ToolButtonNuevaScript_Click()
     TabStrip1.Enabled = True
 
     TextAreaEditor.text = ""
-    Label11.text = ""
+    '  Label11.text = ""
     File.Save(destino, "") ' Guardamos
     ListViewListaOrdenes.Clear()
 
@@ -355,14 +355,14 @@ End
 Public Sub ListViewListaOrdenes_Click()
   ' Para mostrar al usuario en que linea esta ubicado
 
-  Label11.Caption = "Linea: " & ListViewListaOrdenes.Item.Key & " (" & ListViewListaOrdenes.Item.text & ")"
+  ' Label11.Caption = "Linea: " & ListViewListaOrdenes.Item.Key & " (" & ListViewListaOrdenes.Item.text & ")"
 
 End
 
 Public Sub ListViewListaOrdenes_Select()
   ' Para mostrar al usuario en que linea esta ubicado
 
-  Label11.Caption = "Linea: " & ListViewListaOrdenes.Item.Key & " (" & ListViewListaOrdenes.Item.text & ")"
+  '  Label11.Caption = "Linea: " & ListViewListaOrdenes.Item.Key & " (" & ListViewListaOrdenes.Item.text & ")"
 
 End
 
@@ -411,7 +411,7 @@ Public Sub Timer2_Timer()
 
   If ListViewListaOrdenes.Available Then 'Para controlar que no estamos en el final de la lista
     Filtro = False ' Para controlar si vamos a saltar una linea
-    Label11.Caption = ListViewListaOrdenes.Item.Key & " (" & ListViewListaOrdenes.Item.text & ")" ' Mensaje de estado
+    ' Label11.Caption = ListViewListaOrdenes.Item.Key & " (" & ListViewListaOrdenes.Item.text & ")" ' Mensaje de estado
     Select Case Left$(ListViewListaOrdenes.item.Text, 4) ' Verificamos el comando que se realizara
       Case "Mous"
         funciones.ejecutar_comando("xdotool mousemove " & Replace$(Right$(ListViewListaOrdenes.item.Text, Len(ListViewListaOrdenes.item.Text) - 6), ",", " "))
@@ -452,7 +452,7 @@ Public Sub Timer2_Timer()
       ListViewListaOrdenes.MoveNext
     End If
   Else
-    Label11.Caption = "Finalizado"
+    '   Label11.Caption = "Finalizado"
     If repitevalor > 1 Then
       repitevalor -= 1
       ListViewListaOrdenes.MoveFirst()
@@ -489,6 +489,12 @@ Public Sub salir_Click()
 End
 
 Public Sub ToolButtonRepite_Click()
+
+  'grabar los cambios realizados antes de empezar
+  File.Save(destino, TextAreaEditor.text)
+  'actualizar contenido del listado de ordenes
+  Wait 0.1
+  cargaDeDatos(destino)
 
   reducirformulario()
   ' Boton Iniciar
@@ -568,6 +574,11 @@ Public Sub Repite_Click()
 End
 
 Public Sub ToggleButtonIniciar2_Click()
+
+  File.Save(destino, TextAreaEditor.text)
+  'actualizar contenido del listado de ordenes
+  Wait 0.1
+  cargaDeDatos(destino)
 
   Me.Title = File.BaseName(destino)
   ButtonIniciar_Click()
@@ -711,7 +722,15 @@ End
 
 Public Sub ButtonLimpiar_Click()
 
+  Me.Title = ""
+  destino = ""
   TextAreaEditor.Text = ""
   ListViewListaOrdenes.Clear()
+
+End
+
+Public Sub NuevoScript_Click()
+
+  ToolButtonNuevaScript_Click()
 
 End
