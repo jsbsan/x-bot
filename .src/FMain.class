@@ -575,6 +575,22 @@ End
 
 Public Sub ToggleButtonIniciar2_Click()
 
+  If destino = "" Then
+    ' Guardamos la lista
+    Dialog.Title = "Guardar Script"
+    Dialog.Filter = ["*.script", "Script X-Bot"] ' Extencion del archivo
+    If Not Dialog.SaveFile() Then
+      If Right$(Dialog.Path, 7) <> ".script" Then ' Verificamos si el usuario ingreso la extencion
+        destino = Dialog.Path & ".script" ' Agregamos extencion al archivo
+      Else
+        destino = Dialog.Path
+      Endif
+    Else
+      Return
+    Endif
+
+  Endif
+
   File.Save(destino, TextAreaEditor.text)
   'actualizar contenido del listado de ordenes
   Wait 0.1
