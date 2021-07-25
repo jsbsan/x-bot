@@ -14,6 +14,20 @@
       Text = ("Nuevo Script")
       Picture = Picture["icon:/16/new"]
     }
+    { MenuAbrir Menu
+      Text = ("Abrir")
+      Picture = Picture["icon:/16/open"]
+    }
+    { MenuGuardar Menu
+      Text = ("Guardar")
+      Picture = Picture["icon:/16/save"]
+    }
+    { MenuGuardarComo Menu
+      Text = ("Guardar Como") & "..."
+      Picture = Picture["icon:/16/save-as"]
+    }
+    { Menu5 Menu
+    }
     { Iniciar Menu
       Text = ("Iniciar")
       Picture = Picture["images/start2.png"]
@@ -87,6 +101,30 @@
     { Menuf9 Menu recienteMenu
       Name = "Menuf9"
       Text = ("reciente 9")
+    }
+    { Menuf10 Menu recienteMenu
+      Name = "Menuf10"
+      Text = ("reciente 10")
+    }
+    { Menuf11 Menu recienteMenu
+      Name = "Menuf11"
+      Text = ("reciente 11")
+    }
+    { Menuf12 Menu recienteMenu
+      Name = "Menuf12"
+      Text = ("reciente 12")
+    }
+    { Menuf13 Menu recienteMenu
+      Name = "Menuf13"
+      Text = ("reciente 13")
+    }
+    { Menuf14 Menu recienteMenu
+      Name = "Menuf14"
+      Text = ("reciente 14")
+    }
+    { Menuf15 Menu recienteMenu
+      Name = "Menuf15"
+      Text = ("reciente 15")
     }
   }
   { sd Menu

@@ -25,9 +25,14 @@ Public Sub Form_Open()
   menuf7.tag = Settings["menu7", "reciente 7"]
   menuf8.tag = Settings["menu8", "reciente 8"]
   menuf9.tag = Settings["menu9", "reciente 9"]
+  menuf10.tag = Settings["menu10", "reciente 10"]
+  menuf11.tag = Settings["menu11", "reciente 11"]
+  menuf12.tag = Settings["menu12", "reciente 12"]
+  menuf13.tag = Settings["menu13", "reciente 13"]
+  menuf14.tag = Settings["menu14", "reciente 14"]
+  menuf15.tag = Settings["menu15", "reciente 15"]
 
   compruebareciente(menuf1)
-
   compruebareciente(menuf2)
   compruebareciente(menuf3)
   compruebareciente(menuf4)
@@ -36,6 +41,12 @@ Public Sub Form_Open()
   compruebareciente(menuf7)
   compruebareciente(menuf8)
   compruebareciente(menuf9)
+  compruebareciente(menuf10)
+  compruebareciente(menuf11)
+  compruebareciente(menuf12)
+  compruebareciente(menuf13)
+  compruebareciente(menuf14)
+  compruebareciente(menuf15)
 
   Me.Center
 
@@ -63,8 +74,32 @@ Public Sub agregoRecientes(destino As String)
   If menuf7.Tag = destino Then Return
   If menuf8.Tag = destino Then Return
   If menuf9.Tag = destino Then Return
+  If menuf10.Tag = destino Then Return
+  If menuf11.Tag = destino Then Return
+  If menuf12.Tag = destino Then Return
+  If menuf13.Tag = destino Then Return
+  If menuf14.Tag = destino Then Return
+  If menuf15.Tag = destino Then Return
 
   'si no exite lo agrego.
+  menuf15.Text = menuf14.Text
+  menuf15.Tag = menuf14.Tag
+
+  menuf14.Text = menuf13.Text
+  menuf14.Tag = menuf13.Tag
+
+  menuf13.Text = menuf12.Text
+  menuf13.Tag = menuf12.Tag
+
+  menuf12.Text = menuf11.Text
+  menuf12.Tag = menuf11.Tag
+
+  menuf11.Text = menuf10.Text
+  menuf11.Tag = menuf10.Tag
+
+  menuf10.Text = menuf9.Text
+  menuf10.Tag = menuf9.Tag
+
   menuf9.Text = menuf8.Text
   menuf9.Tag = menuf8.Tag
 
@@ -457,7 +492,7 @@ Public Sub Timer2_Timer()
       repitevalor -= 1
       ListViewListaOrdenes.MoveFirst()
       Timer2.Enabled = True
-      Me.Title = File.BaseName(destino) & " (" & repitevalor & ")"
+      Me.Title = "(" & repitevalor & ") " & File.BaseName(destino)
     Else
       Timer2.Enabled = False
       Me.Title = File.basename(destino)
@@ -660,6 +695,12 @@ Public Sub Form_Close()
   Settings["menu7"] = menuf7.tag
   Settings["menu8"] = menuf8.tag
   Settings["menu9"] = menuf9.tag
+  Settings["menu10"] = menuf10.tag
+  Settings["menu11"] = menuf11.tag
+  Settings["menu12"] = menuf12.tag
+  Settings["menu13"] = menuf13.tag
+  Settings["menu14"] = menuf14.tag
+  Settings["menu15"] = menuf15.tag
 
 End
 
@@ -748,5 +789,23 @@ End
 Public Sub NuevoScript_Click()
 
   ToolButtonNuevaScript_Click()
+
+End
+
+Public Sub MenuAbrir_Click()
+
+  ToolButtonAbrirScript_Click()
+
+End
+
+Public Sub MenuGuardar_Click()
+
+  ToolButtonGuardarEditor_Click()
+
+End
+
+Public Sub MenuGuardarComo_Click()
+
+  ToolButtonGuardarScript_Click()
 
 End
