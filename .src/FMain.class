@@ -809,3 +809,9 @@ Public Sub MenuGuardarComo_Click()
   ToolButtonGuardarScript_Click()
 
 End
+
+Public Sub ButtonConfigurar_Click()
+
+  Desktop.Open("/home/minino/.config/gambas3/x-bot.conf")
+
+End

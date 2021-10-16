@@ -455,17 +455,17 @@
     Border = True
   }
   { ToolButtonAbrirScript ToolButton
-    Move(455,0,56,28)
+    Move(441,0,35,28)
     ToolTip = ("Cargar Script")
     Picture = Picture["icon:/24/open"]
   }
   { ToolButtonNuevaScript ToolButton
-    Move(525,0,56,28)
+    Move(497,0,35,28)
     ToolTip = ("Nuevo Script")
     Picture = Picture["icon:/24/new"]
   }
   { ToolButtonGuardarScript ToolButton
-    Move(392,0,49,28)
+    Move(392,0,35,28)
     ToolTip = ("Guardar Script")
     Picture = Picture["icon:/24/save"]
   }
@@ -474,5 +474,10 @@
     Visible = False
     ToolTip = ("Script: Zona comandos")
     Editable = True
+  }
+  { ButtonConfigurar Button
+    Move(560,0,28,28)
+    ToolTip = ("configurar")
+    Picture = Picture["icon:/22/menu"]
   }
 }
