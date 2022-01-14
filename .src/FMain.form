@@ -205,7 +205,7 @@
       Border = True
     }
     { Label4 Label
-      Move(252,231,112,28)
+      Move(273,231,91,28)
       Font = Font["-2"]
       Alignment = Align.Right
       Text = ("Tiempo de Espera")
@@ -398,11 +398,23 @@
     { ButtonAleatoria Button
       Move(84,140,119,21)
       Text = ("Palabra Aleatoria")
+      Picture = Picture["images/aleatoria16x16.png"]
     }
     { ButtonTeclasDisponibles Button
-      Move(105,224,126,21)
+      Move(84,224,126,21)
       Text = ("Nombre de Teclas")
       Picture = Picture["icon:/16/help"]
+    }
+    { ButtonFrraseAleatoria Button
+      Move(210,140,119,21)
+      Text = ("Frase Aleatoria")
+      Picture = Picture["images/FraseAleatoria16x16.png"]
+    }
+    { ButtonNPestana Button
+      Move(336,140,42,21)
+      Tag = "CTL+T"
+      ToolTip = ("NUEVA PESTAÑA:\nEjemplo:\nMouse: 1813,115\nclick(1)\nDetectar Id Ventana: Chrome\nIr Ventana\nNPestaña")
+      Text = ("CTL+T")
     }
   }
   { Timer2 #Timer

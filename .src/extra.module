@@ -1,7 +1,26 @@
 ' Gambas module file
 
 Public contador As Integer = -1
+Public contadorR As Integer = -1
 Public ConjuntoPalabras As String[]
+Public ConjuntoRutas As String[]
+
+Public Function FraseAleatoria() As String
+
+  If IsNull(ConjuntoRutas) Then
+    ConjuntoRutas = Split(File.Load("ListaRuta.txt"), "\n")
+    ConjuntoRutas = ListaAleatoria(ConjuntoRutas)
+  Endif
+  contadorR += 1
+
+  If contadorR > ConjuntoRutas.count - 1 Then
+    contadorR = 0
+    ConjuntoRutas = ListaAleatoria(ConjuntoRutas)
+  Endif
+
+  Return ConjuntoRutas[contadorR]
+
+End
 
 Public Function aleatoria() As String
 

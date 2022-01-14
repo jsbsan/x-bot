@@ -1,0 +1,31 @@
+---------------------------------
+Crear nueva pestañas:
+---------------------------------
+Mouse: 1813,115
+click(1)
+Detectar Id Ventana: Chrome
+Ir Ventana
+NPestaña
+
+Explicacion:
+1-dirijo al raton a la posicion 1813,115 de la pantalla, (donde hay una ventana de Chrome)
+2-detecto el id del programa Chrome
+3-voy a esa ventana
+4-Pulso ctrl+T (abrir nueva pestaña en el navegador)
+
+--------------------------------
+otro
+--------------------------------
+Mouse: 1967,115
+click(1)
+Detectar Id Ventana: Chrome
+Ir Ventana
+Frase Aleatoria
+Tecla: Return
+Esperar (Seg): 2
+Mouse: 1940,303
+click(1)
+Esperar (Seg): 1
+Detectar Id Ventana: Chrome
+Ir Ventana
+NPestaña
