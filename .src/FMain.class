@@ -32,6 +32,21 @@ Public Sub Form_Open()
   menuf14.tag = Settings["menu14", "reciente 14"]
   menuf15.tag = Settings["menu15", "reciente 15"]
 
+  'comprueba y da valores a los grupos de ruta iniciales
+  If Settings["Ruta/GrupoAcciones1"] = "" Then Settings["Ruta/GrupoAcciones1"] = "/home/minino/Descargas/Scrit Xbox/0 chrome julio"
+  GrupoAcciones1.Caption = File.Name(Settings["Ruta/GrupoAcciones1"])
+  GrupoAcciones1.tag = Settings["Ruta/GrupoAcciones1"]
+
+  If Settings["Ruta/GrupoAcciones2"] = "" Then Settings["Ruta/GrupoAcciones2"] = "/home/minino/Descargas/Scrit Xbox/1 chrome"
+  GrupoAcciones2.Caption = File.Name(Settings["Ruta/GrupoAcciones2"])
+  GrupoAcciones2.tag = Settings["Ruta/GrupoAcciones2"]
+
+  If Settings["Ruta/GrupoAcciones3"] = "" Then Settings["Ruta/GrupoAcciones3"] = "/home/minino/Descargas/Scrit Xbox/2 chormium"
+  GrupoAcciones3.Caption = File.Name(Settings["Ruta/GrupoAcciones3"])
+  GrupoAcciones3.tag = Settings["Ruta/GrupoAcciones3"]
+
+  If Settings["Ruta/Ficheros"] = "" Then Settings["Ruta/Ficheros"] = User.home
+
   compruebareciente(menuf1)
   compruebareciente(menuf2)
   compruebareciente(menuf3)
@@ -294,6 +309,14 @@ End
 Public Sub ToolButtonAbrirScript_Click()
 
   ' Cargar Script
+  Dialog.Path = Settings["Ruta/Ficheros", User.home]
+
+  AbrirFichero()
+
+End
+
+Public Sub AbrirFichero()
+
   Dialog.Title = "Seleccione un archivo"
   Dialog.Filter = ["*.script", "Script X-Bot"]
 
@@ -304,7 +327,7 @@ Public Sub ToolButtonAbrirScript_Click()
 
     agregoRecientes(destino)
     Me.Title = File.basename(destino)
-
+    Settings["Ruta/Ficheros"] = Dialog.path
   End If
 Catch
   Message.Error("ohhhh!!!! error!!!")
@@ -843,5 +866,32 @@ Public Sub ButtonNPestana_Click()
   TextAreaEditor.text &= "NPestaña" & "\n"
   ButtonIzquierdaRaton.SetFocus()
   modificado = True
+
+End
+
+Public Sub GrupoAcciones1_Click()
+  ' Cargar Script
+
+  Dialog.Path = Settings["Ruta/GrupoAcciones1", User.home]
+
+  AbrirFichero()
+
+End
+
+Public Sub GrupoAcciones2_Click()
+  ' Cargar Script
+
+  Dialog.Path = Settings["Ruta/GrupoAcciones2", User.home]
+
+  AbrirFichero()
+
+End
+
+Public Sub GrupoAcciones3_Click()
+  ' Cargar Script
+
+  Dialog.Path = Settings["Ruta/GrupoAcciones3", User.home]
+
+  AbrirFichero()
 
 End

@@ -127,6 +127,18 @@
       Text = ("reciente 15")
     }
   }
+  { Grupo Menu
+    Text = ("Grupo")
+    { GrupoAcciones1 Menu
+      Text = ("GrupoAcciones1")
+    }
+    { GrupoAcciones2 Menu
+      Text = ("GrupoAcciones2")
+    }
+    { GrupoAcciones3 Menu
+      Text = ("GrupoAcciones3")
+    }
+  }
   { sd Menu
     Text = ("Autores: Jodacame y Jsbsan")
   }
@@ -468,7 +480,7 @@
   }
   { ToolButtonAbrirScript ToolButton
     Move(441,0,35,28)
-    ToolTip = ("Cargar Script")
+    ToolTip = ("Abrir/Cargar Script")
     Picture = Picture["icon:/24/open"]
   }
   { ToolButtonNuevaScript ToolButton
@@ -489,7 +501,7 @@
   }
   { ButtonConfigurar Button
     Move(560,0,28,28)
-    ToolTip = ("configurar")
+    ToolTip = ("Configurar variables")
     Picture = Picture["icon:/22/menu"]
   }
 }
