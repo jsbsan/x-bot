@@ -847,7 +847,7 @@ End
 
 Public Sub ButtonConfigurar_Click()
 
-  Desktop.Open("/home/minino/.config/gambas3/x-bot.conf")
+  Desktop.Open(User.Home & "/.config/gambas3/x-bot.conf")
 
 End
 
